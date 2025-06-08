@@ -1,5 +1,5 @@
 class Solution {
-public:  
+public:  // Best solution
     int maxProfit(int k, vector<int>& prices) {
         int n = prices.size() ; const int NEG_INF = INT_MIN/2;
         vector<vector<int>> curr(k+1,vector<int>(2,NEG_INF)),
