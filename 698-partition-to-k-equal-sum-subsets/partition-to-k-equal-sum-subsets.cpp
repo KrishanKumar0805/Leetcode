@@ -15,8 +15,9 @@ public:
             for (int j = 0; j < n; j++) {
                 if (!(mask & (1 << j)) && dp[mask] + nums[j] <= target) {
                     int new_mask = mask | (1 << j);
-                    dp[new_mask] = (dp[mask] + nums[j])%target ;
                     if(new_mask+1==(1<<n)) return 1;
+                    if(dp[new_mask]!=-1) continue;
+                    dp[new_mask] = (dp[mask] + nums[j])%target ;
                 }
             }
         }
