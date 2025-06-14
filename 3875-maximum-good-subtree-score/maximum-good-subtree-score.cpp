@@ -18,7 +18,7 @@ public:
             msk_u |= (1 << d);
             val /= 10;
         }
-        if (valid)  dp[msk_u] = max(dp[msk_u], 1LL * vals[u]);
+        if (valid)  dp[msk_u] =  vals[u];
           for (int v : adj[u]) {
             if (v == par) continue;
             vector<long long> child_dp = solve(v, u, adj, vals);
