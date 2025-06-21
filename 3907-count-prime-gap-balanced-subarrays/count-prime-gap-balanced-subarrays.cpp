@@ -17,7 +17,7 @@ public: const int sz = 5e4+1; vector<bool> is ;
                if(is[nums[left]]){auto it1 = ind.find(left) ; auto it2  = val.find(nums[left]) ;
                 ind.erase(it1) ; val.erase(it2) ;} left++ ;
             } if(val.size() >= 2){
-                auto it = ind.end() ; it -- ; it-- ;
+                auto it = ind.rbegin(); it++ ;
                 ans += (*it - left+ 1) ;
             }
         } return ans ;
