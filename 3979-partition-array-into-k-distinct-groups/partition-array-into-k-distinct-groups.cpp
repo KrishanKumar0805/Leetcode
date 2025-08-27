@@ -5,7 +5,7 @@ public:
         for(int i:nums) mpp[i]++ ;
         int n = nums.size() ;
         if(n%k != 0) return false ;
-        for(int i:nums){if(mpp[i] > n/k) return false ;}
+        for(auto &i:nums){if(mpp[i] > n/k) return false ;}
         return true ;
     }
 };
