@@ -1,4 +1,4 @@
-/* Write your T-SQL query statement below */
-select c.id,movie,c.description,c.rating from Cinema c 
-where c.id % 2 <> 0 and c.description <> 'boring'
-order by  c.rating desc
+# Write your MySQL query statement below
+select * from Cinema 
+where id%2 =1 and description <> 'boring'
+order by rating desc
