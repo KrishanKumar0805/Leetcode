@@ -1,4 +1,5 @@
-# Write your MySQL query statement below
+/* Write your T-SQL query statement below */
+-- # Write your MySQL query statement below
 
 select name from Employee 
                where id in (select managerId from Employee
