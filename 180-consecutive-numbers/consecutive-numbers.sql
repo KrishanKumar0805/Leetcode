@@ -4,10 +4,10 @@ WITH t AS (
          id - ROW_NUMBER() OVER (PARTITION BY num ORDER BY id) AS grp
   FROM Logs
 )
+, cte as (
+    select num from t 
+    group by num, grp
+    having count(*) >= 3 
+)
 SELECT distinct num AS ConsecutiveNums
-FROM (
-  SELECT num, grp, COUNT(*) AS streak_len
-  FROM t
-  GROUP BY  num,grp
-) s
-WHERE streak_len >= 3;
+from cte
