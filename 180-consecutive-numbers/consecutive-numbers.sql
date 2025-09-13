@@ -8,6 +8,6 @@ SELECT distinct num AS ConsecutiveNums
 FROM (
   SELECT num, grp, COUNT(*) AS streak_len
   FROM t
-  GROUP BY num, grp
+  GROUP BY  num,grp
 ) s
 WHERE streak_len >= 3;
