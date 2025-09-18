@@ -3,7 +3,5 @@ class Solution:
         ans = 1e8
         l = len(tasks)
         for i in range(l):
-            a = tasks[i][0] 
-            b = tasks[i][1]
-            ans = min(ans,a+b)   
+            ans= min(ans,tasks[i][0] + tasks[i][1])   
         return ans
