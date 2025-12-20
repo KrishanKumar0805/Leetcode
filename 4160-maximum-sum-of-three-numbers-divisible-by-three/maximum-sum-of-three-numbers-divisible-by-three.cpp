@@ -7,33 +7,51 @@ static const int _ = []() {
 class Solution {
 public:
     int maximumSum(vector<int>& nums) {
-        multiset<int> zero, one, two;
-        int n = nums.size();
-        
-        for(int i = 0; i < n; i++) {
-            if(nums[i] % 3 == 0) zero.insert(nums[i]);
-            else if(nums[i] % 3 == 1) one.insert(nums[i]);
-            else two.insert(nums[i]);
+        int r0[3] = {INT_MIN, INT_MIN, INT_MIN};
+        int r1[3] = {INT_MIN, INT_MIN, INT_MIN};
+        int r2[3] = {INT_MIN, INT_MIN, INT_MIN};
+        int c0 = 0, c1 = 0, c2 = 0;
 
-            if(zero.size() > 3) zero.erase(zero.begin());
-            if(one.size() > 3) one.erase(one.begin());
-            if(two.size() > 3) two.erase(two.begin());
+        for (int x : nums) {
+            int rem = x % 3;
+            if (rem < 0) rem += 3;
+            int* arr;
+            if (rem == 0) { arr = r0; c0++; }
+            else if (rem == 1) { arr = r1; c1++; }
+            else { arr = r2; c2++; }
+            if (x > arr[0]) {
+                arr[2] = arr[1];
+                arr[1] = arr[0];
+                arr[0] = x;
+            } else if (x > arr[1]) {
+                arr[2] = arr[1];
+                arr[1] = x;
+            } else if (x > arr[2]) {
+                arr[2] = x;
+            }
+        }
+        long long ans = LLONG_MIN;
+        bool found = false;
+        if (c0 >= 3) {
+            ans = max(ans, (long long)r0[0] + r0[1] + r0[2]);
+            found = true;
+        }
+        if (c1 >= 3) {
+            ans = max(ans, (long long)r1[0] + r1[1] + r1[2]);
+            found = true;
         }
 
-        int p = zero.size(), q = one.size(), r = two.size();
-        
-        if((p < 3) && (q < 3) && (r < 3) && (p == 0 || q == 0 || r == 0)) return 0;
-
-        int ans = 0;
-
-        if(q == 3) ans = max(ans, accumulate(one.begin(), one.end(), 0));
-        if(p == 3) ans = max(ans, accumulate(zero.begin(), zero.end(), 0));
-        if(r == 3) ans = max(ans, accumulate(two.begin(), two.end(), 0));
-
-        if(p != 0 && q != 0 && r != 0) {
-            ans = max(ans, (*prev(zero.end()) + *prev(two.end()) + *prev(one.end())));
+      
+        if (c2 >= 3) {
+            ans = max(ans, (long long)r2[0] + r2[1] + r2[2]);
+            found = true;
         }
-            
-        return ans;
+
+        if (c0 >= 1 && c1 >= 1 && c2 >= 1) {
+            ans = max(ans, (long long)r0[0] + r1[0] + r2[0]);
+            found = true;
+        }
+
+        return found ? (int)ans : 0;
     }
 };
