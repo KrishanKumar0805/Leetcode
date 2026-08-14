@@ -16,7 +16,7 @@ public:
     //     }
     //    } first approach in o(N^2) coule be better here i guess 
 
-    // 2nd approach 
+    // 2nd approach (best approach overkill this easy solution)
 
        
        int left = 0 ; int freq[26] = {0};
