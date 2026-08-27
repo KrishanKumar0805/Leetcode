@@ -6,9 +6,10 @@ public:
             bitset<8> bin(ch);
             ans += bin.to_string();
         }
-        string sna = ans ;
-        reverse(ans.begin(),ans.end());
-        if(ans == sna) return true ;
-        return false ;
+        cout << ans << endl ;
+        int n = ans.size();
+        for(int i=0;i<n/2;i++){
+            if(ans[i] != ans[n-i-1]) return false ;
+        } return true ;
     }
 };
